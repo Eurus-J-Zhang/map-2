@@ -8,13 +8,13 @@ class Data(db.Model):
     gender=db.Column(db.String(1))
     age = db.Column(db.Integer)
 
-    emo1_happiness = db.Column(db.Integer)
-    emo1_joy = db.Column(db.Integer)
-    emo1_despair = db.Column(db.Integer)
-    emo1_sadness = db.Column(db.Integer)
-    emo1_irritation = db.Column(db.Integer)
-    emo1_rage = db.Column(db.Integer)
-    # emo1_confusion = db.Column(db.Integer)
+    emo_happiness = db.Column(db.Integer)
+    emo_joy = db.Column(db.Integer)
+    emo_despair = db.Column(db.Integer)
+    emo_sadness = db.Column(db.Integer)
+    emo_irritation = db.Column(db.Integer)
+    emo_rage = db.Column(db.Integer)
+
 
     feedback = db.Column(db.String(1000))
     station_track = db.Column(db.String, nullable=True)

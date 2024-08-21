@@ -205,8 +205,8 @@ form p {
 
 /* for the radio buttons */
 .radio {
-    margin-top: 5px;
-    margin-bottom: 10px;
+    /* margin-top: 5px; */
+    /* margin-bottom: 10px; */
     margin-left: 5%;
 }
 

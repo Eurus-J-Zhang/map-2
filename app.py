@@ -80,8 +80,6 @@ def get_action_choices(station):
     return choices
 
 
-    return choices
-
 def process_action(time_cost, redirect_target):
     """Process the action by updating time, and redirecting."""
     current_time_str = session.get('current_time')
