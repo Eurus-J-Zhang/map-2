@@ -83,10 +83,8 @@
 
         // Show the modal if the station is 'Millstone Square'
         if (currentStation === 'Millstone Square') {
-            showModal(`However, the metro stops at Millstone Square unexpectedly, and could not continue to the 
-            direction of Perivale. <br>
-            It is due to ongoing construction at Bagton Mere, with no metros able to pass through.  <br>
-            Please design your trip accordingly.`);
+            showModal(`However, the metro stops here unexpectedly. <br>
+`);
         }
 
         // Show the modal with no close option if the current time is >= 09:00
@@ -127,20 +125,30 @@ Goal station:   CONBY VALE
 
 
 {% if session.get('s3_visited') %}
+<p class="t_warning">
+    Warning:<br>
+    Due to ongoing construction at Bagton Mere, the station is not accessible and no metros will pass through it.  <br>
+    Your task remains the same.
+    <!-- Please design your trip accordingly.<br> -->
+</p>
+
 <p class="t_map">    
+    <br>
     It takes 2 mins between each Blue Line station. <br>
     It takes 3 mins between each Red Line station. <br>
     It takes either 4 or 7 mins between each Yellow Line station (marked on the map). <br>
-    <span style="color: red;">Station Bagton Mere is not accessible.</span>
+    <!-- <span style="color: red;">Station Bagton Mere is not accessible.</span> -->
 </p>
-    <img src="{{ url_for('static', filename='img/map_with_error.jpg') }}" alt="New Map" style="width: 100%;">
+    <img src="{{ url_for('static', filename='img/map_with_error.jpg') }}" alt="New Map" style="width: 90%;">
 {% else %}
+
+
 <p class="t_map">    
     It takes 2 mins between each Blue Line station. <br>
     It takes 3 mins between each Red Line station. <br>
     It takes either 4 or 7 mins between each Yellow Line station (marked on the map). <br>
 </p>
-    <img src="{{ url_for('static', filename='img/map.jpg') }}" alt="Original Map" style="width: 100%;">
+    <img src="{{ url_for('static', filename='img/map.jpg') }}" alt="Original Map" style="width: 90%;">
 {% endif %}
 {% endblock %}
 
@@ -159,7 +167,7 @@ Goal station:   CONBY VALE
         </div>
     {% endfor %}
 
-    <br><br>
+    <br>
     <p>{{ form.submit(class='continue-btn') }}</p>
 </form>
 {% endblock %}
