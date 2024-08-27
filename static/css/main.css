@@ -294,3 +294,62 @@ table {
     text-align: center;
 }
 
+
+/* for the tab */
+/* Basic styles for the tabs */
+/* .tab {
+    text-align: center;
+    margin-top: 20px;
+}
+
+
+.tab button {
+    background-color: #f1f1f1;
+    border: 2px solid #ccc;
+    outline: none;
+    cursor: pointer;
+    padding: 10px 10%;
+    margin: 10px;
+    transition: 0.3s;
+    font-size: 16px;
+    border-radius: 8px;
+    /* width: 200px; */
+/* }  */
+.tab {
+    overflow: hidden;
+    border-bottom: 1px solid #ccc;
+}
+
+.tab button {
+    background-color: inherit;
+    float: left;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 14px 16px;
+    transition: 0.3s;
+}
+
+.tab button:hover {
+    background-color: #ddd;
+}
+
+.tab button.active {
+    background-color: #ccc;
+    border-color: #777;
+}
+
+/* Style the tab content */
+.tabcontent {
+    display: none;
+    padding: 20px;
+    text-align: center;
+    border-top: none;
+}
+
+/* Styling the image to be centered and responsive */
+.tabcontent img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+}

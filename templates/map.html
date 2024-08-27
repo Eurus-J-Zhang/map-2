@@ -3,6 +3,11 @@
 {% block script %}
 
 <script>
+
+    function preventBack() { window.history.forward(); }    
+    setTimeout("preventBack()", 0);  
+    window.onunload = function () { null }; 
+
     var currentStation = "{{ station }}";
     let currentTimeStr = "{{ current_time }}"; // Time passed from Flask, e.g., "08:32"
 
@@ -97,6 +102,34 @@
             showModal('You have reached your destination in time! Now you can get out of the metro and finish the task.');
         }
     });
+
+
+// for the tab part
+function openTab(evt, tabName) {
+        // Declare all variables
+        var i, tabcontent, tablinks;
+
+        // Get all elements with class="tabcontent" and hide them
+        tabcontent = document.getElementsByClassName("tabcontent");
+        for (i = 0; i < tabcontent.length; i++) {
+            tabcontent[i].style.display = "none";
+        }
+
+        // Get all elements with class="tablinks" and remove the class "active"
+        tablinks = document.getElementsByClassName("tablinks");
+        for (i = 0; i < tablinks.length; i++) {
+            tablinks[i].className = tablinks[i].className.replace(" active", "");
+        }
+
+        // Show the current tab, and add an "active" class to the button that opened the tab
+        document.getElementById(tabName).style.display = "block";
+        evt.currentTarget.className += " active";
+    }
+
+    // Automatically click on the first tab when the page loads
+    document.addEventListener("DOMContentLoaded", function() {
+        document.getElementsByClassName("tablinks")[0].click();
+    });
 </script>
 
 
@@ -122,35 +155,41 @@ Goal station:   CONBY VALE
 
 {% block left_block %}
 
-
-
 {% if session.get('s3_visited') %}
 <p class="t_warning">
     Warning:<br>
-    Due to ongoing construction at Bagton Mere, the station is not accessible and no metros will pass through it.  <br>
+    Due to ongoing construction at Bagton Mere, the station is not accessible and no metros will pass through Bagton Mere. <br>
     Your task remains the same.
-    <!-- Please design your trip accordingly.<br> -->
-</p>
-
-<p class="t_map">    
     <br>
-    It takes 2 mins between each Blue Line station. <br>
-    It takes 3 mins between each Red Line station. <br>
-    It takes either 4 or 7 mins between each Yellow Line station (marked on the map). <br>
-    <!-- <span style="color: red;">Station Bagton Mere is not accessible.</span> -->
 </p>
-    <img src="{{ url_for('static', filename='img/map_with_error.jpg') }}" alt="New Map" style="width: 100%;">
-{% else %}
-
-
-<p class="t_map">    
-    It takes 2 mins between each Blue Line station. <br>
-    It takes 3 mins between each Red Line station. <br>
-    It takes either 4 or 7 mins between each Yellow Line station (marked on the map). <br>
-</p>
-    <img src="{{ url_for('static', filename='img/map.jpg') }}" alt="Original Map" style="width: 100%;">
+<br><br>
 {% endif %}
+
+<div class="tab">
+    <button class="tablinks" onclick="openTab(event, 'Tab1')">Metro Map</button>
+    <button class="tablinks" onclick="openTab(event, 'Tab2')">Blue Line Timetable</button>
+    <button class="tablinks" onclick="openTab(event, 'Tab3')">Red Line Timetable</button>
+    <button class="tablinks" onclick="openTab(event, 'Tab4')">Yellow Line Timetable</button>
+</div>
+
+<div id="Tab1" class="tabcontent">
+    <img src="{% if session.get('s3_visited') %}{{ url_for('static', filename='img/map_no_time_error.jpg') }}{% else %}{{ url_for('static', filename='img/map_no_time.jpg') }}{% endif %}" alt="Metro Map" style="width: 100%;">
+</div>
+
+<div id="Tab2" class="tabcontent">
+    <img src="{% if session.get('s3_visited') %}{{ url_for('static', filename='img/blue_line_error.jpg') }}{% else %}{{ url_for('static', filename='img/blue_line.jpg') }}{% endif %}" alt="Blue Line Timetable" style="width: 100%;">
+</div>
+
+<div id="Tab3" class="tabcontent">
+    <img src="{{ url_for('static', filename='img/red_line.jpg') }}" alt="Red Line Timetable" style="width: 80%;">
+</div>
+
+<div id="Tab4" class="tabcontent">
+    <img src="{{ url_for('static', filename='img/yellow_line.jpg') }}" alt="Yellow Line Timetable" style="width: 100%;">
+</div>
+
 {% endblock %}
+
 
 {% block right_block %}
 <form method="POST">
