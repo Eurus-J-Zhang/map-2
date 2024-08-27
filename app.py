@@ -71,8 +71,9 @@ def get_action_choices(station):
         
         if action in enabled_actions:
             time = enabled_actions[action]
-            time_str = f'<br>Time costs: {time} mins' if time else ''
-            choice = (action, actions[action] + time_str, True)
+            # time_str = f'<br>Time costs: {time} mins' if time else ''
+            # choice = (action, actions[action] + time_str, True)
+            choice = (action, actions[action], True)
         elif action in disabled_actions:
             choice = (action, actions[action], False)
         else:

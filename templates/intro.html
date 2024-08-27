@@ -9,6 +9,33 @@
     function fn1(){
         window.location="s1";
     }
+
+    // for the tab part
+    function openTab(evt, tabName) {
+        // Declare all variables
+        var i, tabcontent, tablinks;
+
+        // Get all elements with class="tabcontent" and hide them
+        tabcontent = document.getElementsByClassName("tabcontent");
+        for (i = 0; i < tabcontent.length; i++) {
+            tabcontent[i].style.display = "none";
+        }
+
+        // Get all elements with class="tablinks" and remove the class "active"
+        tablinks = document.getElementsByClassName("tablinks");
+        for (i = 0; i < tablinks.length; i++) {
+            tablinks[i].className = tablinks[i].className.replace(" active", "");
+        }
+
+        // Show the current tab, and add an "active" class to the button that opened the tab
+        document.getElementById(tabName).style.display = "block";
+        evt.currentTarget.className += " active";
+    }
+
+    // Automatically click on the first tab when the page loads
+    document.addEventListener("DOMContentLoaded", function() {
+        document.getElementsByClassName("tablinks")[0].click();
+    });
 </script>
 {% endblock %}
 
@@ -56,20 +83,41 @@ Goal Station:   ***
 
 {% block left_block %}
 <p class="t_note">
-    A metro map will be shown here for you to design your trip. (This map is only an example)<br>
-    Note: In this experiment, we don't count the transfer time if you need to change the metro line. 
+    A metro map and timetables are presented here to help you plan your trip. 
+    You can use the timetables to determine the travel times between stations. 
+<br>
+    Note: The map and timetable here are for illustrative purposes only. 
+    Different ones will be used in the actual experiment.
+    Also, transfer times between different metro lines are not considered. 
 </p>
-<p class="t_map">    
-    It takes * mins between each Blue Line station. <br>
-    It takes * mins between each Red Line station. <br>
-    It takes * mins between each Yellow Line station. <br>
-</p>
+<br><br>
+<div class="tab">
+    <button class="tablinks" onclick="openTab(event, 'Tab1')">Metro Map</button>
+    <button class="tablinks" onclick="openTab(event, 'Tab2')">Blue Line Timetable</button>
+    <button class="tablinks" onclick="openTab(event, 'Tab3')">Red Line Timetable</button>
+    <button class="tablinks" onclick="openTab(event, 'Tab4')">Yellow Line Timetable</button>
+</div>
 
+<div id="Tab1" class="tabcontent">
+    <img src="{{ url_for('static', filename='img/map_intro.jpg') }}" alt="Metro Map" style="width: 100%;">
+</div>
+
+<div id="Tab2" class="tabcontent">
+    <img src="{{ url_for('static', filename='img/intro_timetable.jpg')}}" alt="Blue Line Timetable" style="width: 100%;">
+</div>
+
+<div id="Tab3" class="tabcontent">
+<p>***</p>
+</div>
+
+<div id="Tab4" class="tabcontent">
+<p>***</p>
+</div>
 
 <br>
-<div class="container">
+<!-- <div class="container">
     <img src="{{ url_for('static', filename='img/map_intro.jpg') }}" alt="Example Image" style="width: 80%;">
-</div>
+</div> -->
 
 {% endblock %}
 
