@@ -42,14 +42,15 @@
 {% block headline %}
 
 <p class="t_note">
+    Please read through the instructions and then start the task.<br><br>
 
-    Your task is to navigate the metro lines from the starting station at 8:30, and to reach your destination before 9:00.<br>
-    Please plan your route accordingly and avoid unnecessary detours to ensure you arrive in time. 
+    Your goal is to navigate the metro lines using the provided interface, starting at 8:30 and reaching your destination by 9:00.<br>
+    Please plan your route carefully and avoid unnecessary detours to ensure you arrive in time. 
 <br><br>
     At each station, you will have 90 seconds to choose an action, which will lead you to the next station. <br>
-    While the clock time will increase based on your choices, the 90-seconds decision time does not affect the clock. 
+    The clock time will increase based on your choices, but the 90-seconds decision time does not affect the clock. 
     <br><br>
-    To successfully complete the task, you must arrive your destination before 9:00, and make decisions within the allotted 90 seconds at any station. 
+    To successfully complete the task, you must arrive your destination before 9:00, and make decisions within the 90-second limit at any station. 
 
 </p>
 
@@ -83,11 +84,12 @@ Goal Station:   ***
 
 {% block left_block %}
 <p class="t_note">
-    A metro map and timetables are presented here to help you plan your trip. 
+    A metro map and its timetables are presented here to help you plan your trip. 
     You can use the timetables to determine the travel times between stations. 
-<br>
-    Note: The map and timetable here are for illustrative purposes only. 
-    Different ones will be used in the actual experiment.
+    Click the tab below to see the timetables.
+<br><br>
+    Note: The map and timetables here are for illustrative purposes only. 
+    Different ones will be used in the actual task.
     Also, transfer times between different metro lines are not considered. 
 </p>
 <br><br>
@@ -107,27 +109,24 @@ Goal Station:   ***
 </div>
 
 <div id="Tab3" class="tabcontent">
-<p>***</p>
+    <img src="{{ url_for('static', filename='img/intro_timetable.jpg')}}" alt="Blue Line Timetable" style="width: 100%;">
 </div>
 
 <div id="Tab4" class="tabcontent">
-<p>***</p>
+    <img src="{{ url_for('static', filename='img/intro_timetable.jpg')}}" alt="Blue Line Timetable" style="width: 100%;">
 </div>
 
 <br>
-<!-- <div class="container">
-    <img src="{{ url_for('static', filename='img/map_intro.jpg') }}" alt="Example Image" style="width: 80%;">
-</div> -->
 
 {% endblock %}
 
 {% block right_block %}
-<p class="t_note">
-    Here, you can choose your action, which will take you to the next station, with the clock time adjusting accordingly. <br>
-    Available choices will be shown in their metro colors, while unavailable options will be greyed out. <br>
-    Once selected, your choice will change from white text to black text.
-
+    <p class="t_note">
+        Here, choose your action to move to the next station. The clock time will adjust according to the time cost of your action. <br>
+        Available choices are shown in their metro colors, while unavailable options are greyed out. <br>
+        Once selected, your choice will change from white to black text.
     </p>
+
     <div class="form-action">
     <form method="POST">
         {{ form.hidden_tag() }}
@@ -144,9 +143,10 @@ Goal Station:   ***
     </form>
     </div>
 
-<p class="t_note">
-    If you have understood everything, please click the button "Start" to access the game. All the notes in the boxes will disappear there. 
-</p>
+    <p class="t_note">
+        If you have understood everything, please click the button "Start" to access the task. 
+        All the notes in the boxes will disappear, and the task will start immediately. 
+    </p>
 <br>
 <button onclick="fn1()" id="btn1" class = "continue-btn">Start</button>
 {% endblock %}
